@@ -1,0 +1,50 @@
+# Ignore all of the standard Wordpress Install
+/wp-admin
+/wp-includes
+/index.php
+/wp-activate.php
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-config-sample.php
+/wp-cron.php
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+
+# Ignore particular wp-content folders and files
+/wp-content/index.php
+/wp-content/themes/*
+/wp-content/plugins/*
+/wp-content/mu-plugins/*
+/wp-content/uploads
+/wp-content/upgrade
+/wp-content/cache
+/wp-content/backups
+/wp-content/advanced-cache.php
+/wp-content/wp-cache-config.php
+
+# If you have a plugin, theme, or mu-plugin that you really do want to put into
+# version control, add an exception here. Exceptions will look like this:
+#   !/wp-content/themes/theme-folder
+!/wp-content/themes/default
+
+# Ignore the assetmini files
+/assets/min.php
+/assets/.htaccess
+
+# Ignore files with sensitive info
+.env.php
+.salts.php
+
+# Composer
+/vendor
+composer.phar
+
+# Others
+.DS_Store
+Thumbs.db
