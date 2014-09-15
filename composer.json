@@ -1,9 +1,9 @@
 {
-	"name":"brads/wordpress",
+	"name":"fructify/wordpress",
 	"type":"project",
 	"description": "A composer project package that will install the latest wordpress and get you started quickly.",
-	"homepage": "https://github.com/brad-jones/wordpress",
-	"keywords": ["wordpress"],
+	"homepage": "https://github.com/fructify/wordpress",
+	"keywords": ["fructify", "wordpress", "laravel"],
 	"license": "MIT",
 	"repositories":
 	[{

@@ -1,4 +1,4 @@
-Brads Wordpress
+Fructify
 ================================================================================
 **Wordpress + Composer + Robo Task Runner + WP-CLI + AssetMini + awesome stuff**
 
