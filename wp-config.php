@@ -1,29 +1,53 @@
 <?php
-
-// Include composer first up, so we have it available at all times
-require('vendor/autoload.php');
+////////////////////////////////////////////////////////////////////////////////
+//             ___________                     __   __  _____                   
+//             \_   _____/______ __ __   _____/  |_|__|/ ____\__ __             
+//              |    __) \_  __ \  |  \_/ ___\   __\  \   __<   |  |            
+//              |     \   |  | \/  |  /\  \___|  | |  ||  |  \___  |            
+//              \___  /   |__|  |____/  \___  >__| |__||__|  / ____|            
+//                  \/                      \/               \/                 
+// -----------------------------------------------------------------------------
+//                          https://github.com/fructify                         
+//                                                                              
+//          Designed and Developed by Brad Jones <brad @="bjc.id.au" />         
+// -----------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Section: The base dir for wordpress
  * =============================================================================
- * In case you need to use in any of the config below we define it
- * here instead of all the way at the bottom of the file.
+ * WordPress needs to know where it is installed. Normally one of the last
+ * things that get defined in the standard wp-config.php file. However we have
+ * moved it up the chain a little bit. So that we can use it ourselves.
  */
 
 if (!defined('ABSPATH')) define('ABSPATH', dirname(__FILE__).'/');
 
 /**
- * Section: Environment Specific Configuration
+ * Section: Include the Composer Autoloader
  * =============================================================================
- * Here we define our database connection details and any other environment
- * specific configuration. We use some simple environment detection so that
- * we can easily define different values regardless of where we run.
+ * Now this is the whole point of this project, to get composer loaded into
+ * the wordpress environment. We assume the vendors dir will be located in the 
+ * root of the project.
  */
 
-// Do we have a local .env.php file
-if (file_exists('.env.php'))
+require(ABSPATH.'vendor/autoload.php');
+
+/**
+ * Section: Environment Variables
+ * =============================================================================
+ * Right so this is super simple way to get environment variables loaded.
+ * Most WordPress sites are hosted on shared servers and we can't easily add
+ * real environment variables. Inspired by https://github.com/vlucas/phpdotenv
+ * But simplified heaps, because we are using actual PHP arrays and not trying
+ * to parse a text file the performance hit should be negligible.
+ * 
+ * **IT GOES WITHOUT SAYING - BUT I'LL SAY IT ANYWAY - DO NOT COMMIT .env.php**
+ */
+
+if (file_exists(ABSPATH.'.env.php'))
 {
-	foreach (require('.env.php') as $key => $value)
+	foreach (require(ABSPATH.'.env.php') as $key => $value)
 	{
 		if (getenv($key) === false)
 		{
@@ -34,8 +58,14 @@ if (file_exists('.env.php'))
 	}
 }
 
-// Wrap this up in a closure so we don't pollute the global name space.
-// One laughs.., considering what WordPress is about to do but oh well.
+/**
+ * Section: Environment Specific Configuration
+ * =============================================================================
+ * Here we define our database connection details and any other environment
+ * specific configuration. We use some simple environment detection so that
+ * we can easily define different values regardless of where we run.
+ */
+
 call_user_func(function()
 {
 	// This is where the magic happens
@@ -60,11 +90,10 @@ call_user_func(function()
 	switch(true)
 	{
 		// Local
-		case $env('my-local-pc-hostname'):
 		case $env('*dev*'):
 		case $env('*local*'):
 		{
-			define('WP_ENV', 'local');
+			define('FRUCTIFY_ENV', 'local');
 			define('DB_NAME', 'wordpress');
 			define('DB_USER', 'root');
 			define('DB_PASSWORD', '');
@@ -75,7 +104,7 @@ call_user_func(function()
 		// Staging
 		case $env('stag*'):
 		{
-			define('WP_ENV', 'staging');
+			define('FRUCTIFY_ENV', 'staging');
 			define('DB_NAME', $_ENV['DB_NAME']);
 			define('DB_USER', $_ENV['DB_USER']);
 			define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
@@ -86,7 +115,7 @@ call_user_func(function()
 		// Production
 		default:
 		{
-			define('WP_ENV', 'production');
+			define('FRUCTIFY_ENV', 'production');
 			define('DB_NAME', $_ENV['DB_NAME']);
 			define('DB_USER', $_ENV['DB_USER']);
 			define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
@@ -99,7 +128,7 @@ call_user_func(function()
  * Section: Database Charset and Collate
  * =============================================================================
  * If this is different across your environments I think you have some issues...
- * I quote markjaquith "You almost certainly do not want to change these"
+ * Hence I have defined them outside of the above section.
  */
 
 define('DB_CHARSET', 'utf8');
@@ -113,58 +142,6 @@ define('DB_COLLATE', 'utf8_unicode_ci');
  */
 
 $table_prefix  = 'wp_';
-
-/**
- * Section: Uploads .htaccess
- * =============================================================================
- * When you are working locally or on the staging environment. Or any other
- * environment that is not production. It is always really annoying when you
- * are missing media assets from the uploads folder. This fixes that for us.
- */
-
-// define('ASSETS_URL', 'http://example.com/wp-content/uploads/');
-
-call_user_func(function()
-{
-	if (WP_ENV != 'production' && defined('ASSETS_URL'))
-	{
-		// The uploads path
-		$uploads_path = ABSPATH.'/wp-content/uploads';
-
-		// The htaccess contents
-		$htaccess =
-			'<IfModule mod_rewrite.c>'."\n".
-			"\t".'RewriteEngine On'."\n".
-			"\t".'RewriteBase /wp-content/uploads/'."\n".
-			"\t".'RewriteCond %{REQUEST_FILENAME} !-f'."\n".
-			"\t".'RewriteCond %{REQUEST_FILENAME} !-d'."\n".
-			"\t".'RewriteRule ^(.*) '.ASSETS_URL.'$1 [L,P]'."\n".
-			'</IfModule>'
-		;
-
-		// Does the uploads dir exist?
-		if (!is_dir($uploads_path))
-		{
-			// Lets attempt to create it
-			if (!@mkdir($uploads_path))
-			{
-				// Fail silently, when they login to wordpress they will soon
-				// get a message telling them the uploads dir is not writable.
-				return;
-			}
-		}
-
-		// Attempt to write to the .htaccess file
-		// If we can create it awesome, if not im not too worried.
-		@file_put_contents($uploads_path.'/.htaccess', $htaccess);
-	}
-	elseif (file_exists($uploads_path.'/.htaccess'))
-	{
-		// We should remove the file if it has been
-		// uploaded by acident to production for example.
-		@unlink($uploads_path.'/.htaccess');
-	}
-});
 
 /**
  * Section: Authentication Unique Keys and Salts.
@@ -214,4 +191,4 @@ define('WP_DEBUG', false);
  * That's all, stop editing! Happy blogging.
  */
 
-require_once(ABSPATH . 'wp-settings.php');
+require_once(ABSPATH.'wp-settings.php');

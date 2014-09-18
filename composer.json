@@ -1,9 +1,9 @@
 {
 	"name":"fructify/wordpress",
 	"type":"project",
-	"description": "A composer project package that will install the latest wordpress and get you started quickly.",
+	"description": "Making WordPress Fruitful and Productive",
 	"homepage": "https://github.com/fructify/wordpress",
-	"keywords": ["fructify", "wordpress", "laravel"],
+	"keywords": ["fructify", "wordpress", "composer", "laravel"],
 	"license": "MIT",
 	"repositories":
 	[{
@@ -14,25 +14,17 @@
 	{
 		"codegyre/robo": "*",
 		"wp-cli/wp-cli": "*",
-		"symfony/finder": "*",
-		"guzzlehttp/guzzle": "*",
-		"gears/assetmini": "*",
-		"gears/arrays": "*",
-		"gears/string": "*",
-		"wpackagist-plugin/advanced-custom-fields": "*",
-		"wpackagist-plugin/search-everything": "*",
-		"wpackagist-plugin/regenerate-thumbnails": "*",
-		"wpackagist-plugin/admin-menu-tree-page-view": "*",
-		"wpackagist-plugin/cms-tree-page-view": "*"
+		"fructify/robo": "*",
+		"fructify/theme": "*"
 	},
 	"scripts":
 	{
 		"post-install-cmd":
 		[
-			"robo wp:install",
-			"robo permissions:set",
-			"robo wp:salts"
+			"robo fructify:install",
+			"robo fructify:permissions",
+			"robo fructify:salts"
 		],
-		"post-update-cmd": "robo wp:update"
+		"post-update-cmd": "robo fructify:update"
 	}
 }
