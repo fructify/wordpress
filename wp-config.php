@@ -98,6 +98,7 @@ call_user_func(function()
 			define('DB_USER', 'root');
 			define('DB_PASSWORD', '');
 			define('DB_HOST', 'localhost');
+			define('WP_DEBUG', true);
 			break;
 		}
 
@@ -109,6 +110,7 @@ call_user_func(function()
 			define('DB_USER', $_ENV['DB_USER']);
 			define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
 			define('DB_HOST', $_ENV['DB_HOST']);
+			define('WP_DEBUG', false);
 			break;
 		}
 
@@ -120,6 +122,7 @@ call_user_func(function()
 			define('DB_USER', $_ENV['DB_USER']);
 			define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
 			define('DB_HOST', $_ENV['DB_HOST']);
+			define('WP_DEBUG', false);
 		}
 	}
 });
@@ -174,16 +177,6 @@ require('.salts.php');
  */
 
 define('AUTOMATIC_UPDATER_DISABLED', true);
-
-/**
- * Section: WordPress debugging mode.
- * =============================================================================
- * Change this to true to enable the display of notices during development.
- * It is strongly recommended that plugin and theme developers use WP_DEBUG
- * in their development environments.
- */
-
-define('WP_DEBUG', false);
 
 /**
  * Section: Bootstrap WordPress
