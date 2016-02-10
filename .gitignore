@@ -33,10 +33,6 @@
 #   !/wp-content/themes/theme-folder
 !/wp-content/themes/default
 
-# Ignore the assetmini files
-/assets/min.php
-/assets/.htaccess
-
 # Ignore files with sensitive info
 .env.php
 .salts.php
