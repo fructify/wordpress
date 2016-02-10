@@ -1,11 +1,11 @@
 Fructify
 ================================================================================
-**Wordpress + Composer + Robo Task Runner + WP-CLI + AssetMini + awesome stuff**
+**Wordpress + Composer + Robo Task Runner + WP-CLI + awesome stuff**
 
 So this is my take on trying to get wordpress into the composer environment.
 There are many other projects which also do this. I feel like until Wordpress
 actually give us something built-in we are going to continue to see these sorts
-of setups. 
+of setups.
 
 *Checkout these for other ideas:*
 
@@ -18,7 +18,7 @@ How do I use this:
 It's easy just run:
 
 ```
-composer create-project brads/wordpress my-new-site
+composer create-project fructify/wordpress my-new-site -s dev
 ```
 
 *You now have a wordpress project managed with composer.*
@@ -37,9 +37,6 @@ So after you have created your project you will have the following:
 
   - The Robo Task Runner is also installed into ./vendors/bin/robo
     Checkout: http://robo.li/
-
-  - AssetMini, for auto-magically minifying your css and js.
-    See: https://github.com/phpgearbox/assetmini
 
   - You get a .gitignore file that should ignore all the standard wordpress
     files except for a theme called "default", you can change this.
