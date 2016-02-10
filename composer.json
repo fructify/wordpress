@@ -22,6 +22,7 @@
 	{
 		"post-install-cmd":
 		[
+			"chmod +x ./robo",
 			"./robo fructify:install",
 			"./robo fructify:permissions",
 			"./robo fructify:salts"
