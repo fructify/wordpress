@@ -12,11 +12,11 @@
 	}],
 	"require":
 	{
-		"codegyre/robo": "*",
-		"wp-cli/wp-cli": "*",
+		"codegyre/robo": "0.6.*",
+		"wp-cli/wp-cli": "0.22.*",
 		"fructify/robo": "*",
 		"fructify/theme": "*",
-		"brad-jones/robo-tasks": "*"
+		"brad-jones/robo-tasks": "0.2.*"
 	},
 	"scripts":
 	{
