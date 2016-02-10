@@ -18,7 +18,7 @@ How do I use this:
 It's easy just run:
 
 ```
-composer create-project fructify/wordpress my-new-site -s dev
+composer create-project fructify/wordpress my-new-site dev-master
 ```
 
 *You now have a wordpress project managed with composer.*
