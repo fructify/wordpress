@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+////////////////////////////////////////////////////////////////////////////////
+//             ___________                     __   __  _____
+//             \_   _____/______ __ __   _____/  |_|__|/ ____\__ __
+//              |    __) \_  __ \  |  \_/ ___\   __\  \   __<   |  |
+//              |     \   |  | \/  |  /\  \___|  | |  ||  |  \___  |
+//              \___  /   |__|  |____/  \___  >__| |__||__|  / ____|
+//                  \/                      \/               \/
+// -----------------------------------------------------------------------------
+//                          https://github.com/fructify
+//
+//          Designed and Developed by Brad Jones <brad @="bjc.id.au" />
+// -----------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
+
+/*
+ * Include our local composer autoloader just in case
+ * we are called with a globally installed version of robo.
+ */
+require_once(__DIR__.'/vendor/autoload.php');
+
+class RoboFile extends Brads\Robo\Tasks
+{
+	// Include our Fructify Tasks
+	use Fructify\Robo\Tasks;
+
+	// NOTE: The there are also a number of additional tasks provided by:
+	// https://github.com/brad-jones/robo-tasks
+
+	/*
+	 * Feel free to add your own tasks here.
+	 * For more info on the robo task runner,
+	 * see: http://robo.li/
+	 */
+}
+
+// Initialise the runner
+$runner = new Brads\Robo\Runner();
+$runner->execute('RoboFile');

@@ -15,17 +15,18 @@
 		"codegyre/robo": "*",
 		"wp-cli/wp-cli": "*",
 		"fructify/robo": "*",
-		"fructify/theme": "*"
+		"fructify/theme": "*",
+		"brad-jones/robo-tasks": "*"
 	},
 	"scripts":
 	{
 		"post-install-cmd":
 		[
-			"./vendor/bin/robo fructify:install",
-			"./vendor/bin/robo fructify:permissions",
-			"./vendor/bin/robo fructify:salts"
+			"./robo fructify:install",
+			"./robo fructify:permissions",
+			"./robo fructify:salts"
 		],
-		"post-update-cmd": "./vendor/bin/robo fructify:update"
+		"post-update-cmd": "./robo fructify:update"
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true
