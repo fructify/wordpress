@@ -14,9 +14,9 @@
 	{
 		"codegyre/robo": "0.6.*",
 		"wp-cli/wp-cli": "0.22.*",
-		"fructify/robo": "*",
-		"fructify/theme": "*",
-		"brad-jones/robo-tasks": "0.2.*"
+		"fructify/robo": "dev-master",
+		"fructify/theme": "dev-master",
+		"brad-jones/robo-tasks": "dev-master"
 	},
 	"scripts":
 	{
@@ -28,7 +28,5 @@
 			"./robo fructify:salts"
 		],
 		"post-update-cmd": "./robo fructify:update"
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true
+	}
 }
