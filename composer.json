@@ -26,5 +26,7 @@
 			"robo fructify:salts"
 		],
 		"post-update-cmd": "robo fructify:update"
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }
