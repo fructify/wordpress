@@ -12,15 +12,21 @@
 	}],
 	"require":
 	{
-		"johnpbloch/wordpress": "^4.4.2",
-		"codegyre/robo": "^0.6.0",
-		"wp-cli/wp-cli": "^0.22.0"
+		"codegyre/robo": "0.6.*",
+		"wp-cli/wp-cli": "0.22.*",
+		"fructify/robo": "dev-master",
+		"fructify/theme": "dev-master",
+		"brad-jones/robo-tasks": "dev-master"
 	},
-	"extra":
+	"scripts":
 	{
-		"wordpress-install-dir":
-		{
-			"johnpbloch/wordpress": "./"
-		}
+		"post-install-cmd":
+		[
+			"chmod +x ./robo",
+			"./robo fructify:install",
+			"./robo fructify:permissions",
+			"./robo fructify:salts"
+		],
+		"post-update-cmd": "./robo fructify:update"
 	}
 }
