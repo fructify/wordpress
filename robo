@@ -36,5 +36,4 @@ class RoboFile extends Brads\Robo\Tasks
 }
 
 // Initialise the runner
-$runner = new Brads\Robo\Runner();
-$runner->execute('RoboFile');
+(new Brads\Robo\Runner(RoboFile::class))->execute();
