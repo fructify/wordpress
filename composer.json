@@ -14,7 +14,8 @@
 	{
 		"codegyre/robo": "^0.6.0",
 		"wp-cli/wp-cli": "^0.22.0",
-		"fructify/robo": "^0.0.3",
+		"fructify/robo": "^0.0.6",
+		"fructify/theme": "^0.0.1",
 		"brad-jones/robo-tasks": "^0.3.0"
 	},
 	"scripts":
@@ -22,10 +23,12 @@
 		"post-install-cmd":
 		[
 			"chmod +x ./robo",
-			"./robo fructify:install",
+			"./robo fructify:install ^4.0",
 			"./robo fructify:permissions",
 			"./robo fructify:salts"
 		],
-		"post-update-cmd": "./robo fructify:update"
-	}
+		"post-update-cmd": "./robo fructify:update ^4.0"
+	},
+	"minimum-stability": "RC",
+	"prefer-stable": true
 }
