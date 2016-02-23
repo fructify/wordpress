@@ -15,7 +15,7 @@
 		"codegyre/robo": "^0.6.0",
 		"wp-cli/wp-cli": "^0.22.0",
 		"fructify/robo": "^0.0.6",
-		"fructify/theme": "^0.0.2",
+		"fructify/theme": "^0.0.3",
 		"brad-jones/robo-tasks": "^0.3.0"
 	},
 	"scripts":
