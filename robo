@@ -25,6 +25,10 @@ class RoboFile extends Brads\Robo\Tasks
 	// Include our Fructify Tasks
 	use Fructify\Robo\Tasks;
 
+	// Include the Gears/Asset Task
+	// see: https://github.com/phpgearbox/asset
+	use Gears\Asset;
+
 	// NOTE: The there are also a number of additional tasks provided by:
 	// https://github.com/brad-jones/robo-tasks
 

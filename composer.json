@@ -12,7 +12,8 @@
 	}],
 	"require":
 	{
-		"codegyre/robo": "^0.6.0",
+		"gears/asset": "^0.4.0",
+		"codegyre/robo": "^0.7.0",
 		"wp-cli/wp-cli": "^0.22.0",
 		"fructify/robo": "^0.0.6",
 		"fructify/theme": "^0.0.4",
