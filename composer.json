@@ -17,7 +17,8 @@
 		"wp-cli/wp-cli": "^0.22.0",
 		"fructify/robo": "*",
 		"fructify/theme": "*",
-		"brad-jones/robo-tasks": "^0.3.0"
+		"brad-jones/robo-tasks": "^0.3.0",
+		"beelab/bowerphp": "dev-master"
 	},
 	"scripts":
 	{
@@ -26,9 +27,14 @@
 			"chmod +x ./robo",
 			"./robo fructify:install ^4.0",
 			"./robo fructify:permissions",
-			"./robo fructify:salts"
+			"./robo fructify:salts",
+			"./vendor/bin/bowerphp install"
 		],
-		"post-update-cmd": "./robo fructify:update ^4.0"
+		"post-update-cmd":
+		[
+			"./robo fructify:update ^4.0",
+			"./vendor/bin/bowerphp update"
+		]
 	},
 	"minimum-stability": "RC",
 	"prefer-stable": true
