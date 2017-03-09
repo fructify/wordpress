@@ -47,15 +47,15 @@ require(ABSPATH.'vendor/autoload.php');
 
 if (file_exists(ABSPATH.'.env.php'))
 {
-	foreach (require(ABSPATH.'.env.php') as $key => $value)
-	{
-		if (getenv($key) === false)
-		{
-			putenv("$key=$value");
-			$_ENV[$key] = $value;
-			$_SERVER[$key] = $value;
-		}
-	}
+    foreach (require(ABSPATH.'.env.php') as $key => $value)
+    {
+        if (getenv($key) === false)
+        {
+            putenv("$key=$value");
+            $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
+        }
+    }
 }
 
 /**
@@ -68,63 +68,63 @@ if (file_exists(ABSPATH.'.env.php'))
 
 call_user_func(function()
 {
-	// This is where the magic happens
-	$env = function($host)
-	{
-		// Do we have a direct match with the hostname of the OS / webserver
-		// NOTE: The HTTP_HOST can be spoofed, remove if super paranoid.
-		if ($host == gethostname() || $host == @$_SERVER['HTTP_HOST'])
-			return true;
+    // This is where the magic happens
+    $env = function($host)
+    {
+        // Do we have a direct match with the hostname of the OS / webserver
+        // NOTE: The HTTP_HOST can be spoofed, remove if super paranoid.
+        if ($host == gethostname() || $host == @$_SERVER['HTTP_HOST'])
+            return true;
 
-		// This next bit is stolen from Laravel's str_is helper
-		$pattern = '#^'.str_replace('\*', '.*', preg_quote($host, '#')).'\z#';
-		if ((bool) preg_match($pattern, gethostname())) return true;
-		if ((bool) preg_match($pattern, @$_SERVER['HTTP_HOST'])) return true;
+        // This next bit is stolen from Laravel's str_is helper
+        $pattern = '#^'.str_replace('\*', '.*', preg_quote($host, '#')).'\z#';
+        if ((bool) preg_match($pattern, gethostname())) return true;
+        if ((bool) preg_match($pattern, @$_SERVER['HTTP_HOST'])) return true;
 
-		// No match
-		return false;
-	};
+        // No match
+        return false;
+    };
 
-	// Here you can define as many `cases` or environments as you like.
-	// Here are the usual 3 for starters.
-	switch(true)
-	{
-		// Local
-		case $env('*dev*'):
-		case $env('*local*'):
-		{
-			define('FRUCTIFY_ENV', 'local');
-			define('DB_NAME', 'wordpress');
-			define('DB_USER', 'root');
-			define('DB_PASSWORD', '');
-			define('DB_HOST', 'localhost');
-			define('WP_DEBUG', true);
-			break;
-		}
+    // Here you can define as many `cases` or environments as you like.
+    // Here are the usual 3 for starters.
+    switch(true)
+    {
+        // Local
+        case $env('*dev*'):
+        case $env('*local*'):
+        {
+            define('FRUCTIFY_ENV', 'local');
+            define('DB_NAME', 'wordpress');
+            define('DB_USER', 'root');
+            define('DB_PASSWORD', '');
+            define('DB_HOST', 'localhost');
+            define('WP_DEBUG', true);
+            break;
+        }
 
-		// Staging
-		case $env('stag*'):
-		{
-			define('FRUCTIFY_ENV', 'staging');
-			define('DB_NAME', $_ENV['DB_NAME']);
-			define('DB_USER', $_ENV['DB_USER']);
-			define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
-			define('DB_HOST', $_ENV['DB_HOST']);
-			define('WP_DEBUG', false);
-			break;
-		}
+        // Staging
+        case $env('stag*'):
+        {
+            define('FRUCTIFY_ENV', 'staging');
+            define('DB_NAME', $_ENV['DB_NAME']);
+            define('DB_USER', $_ENV['DB_USER']);
+            define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+            define('DB_HOST', $_ENV['DB_HOST']);
+            define('WP_DEBUG', false);
+            break;
+        }
 
-		// Production
-		default:
-		{
-			define('FRUCTIFY_ENV', 'production');
-			define('DB_NAME', $_ENV['DB_NAME']);
-			define('DB_USER', $_ENV['DB_USER']);
-			define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
-			define('DB_HOST', $_ENV['DB_HOST']);
-			define('WP_DEBUG', false);
-		}
-	}
+        // Production
+        default:
+        {
+            define('FRUCTIFY_ENV', 'production');
+            define('DB_NAME', $_ENV['DB_NAME']);
+            define('DB_USER', $_ENV['DB_USER']);
+            define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+            define('DB_HOST', $_ENV['DB_HOST']);
+            define('WP_DEBUG', false);
+        }
+    }
 });
 
 /**

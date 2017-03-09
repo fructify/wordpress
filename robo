@@ -22,21 +22,21 @@ require_once(__DIR__.'/vendor/autoload.php');
 
 class RoboFile extends Brads\Robo\Tasks
 {
-	// Include our Fructify Tasks
-	use Fructify\Robo\Tasks;
+    // Include our Fructify Tasks
+    use Fructify\Robo\Tasks;
 
-	// Include the Gears/Asset Task
-	// see: https://github.com/phpgearbox/asset
-	use Gears\Asset;
+    // Include the Gears/Asset Task
+    // see: https://github.com/phpgearbox/asset
+    use Gears\Asset;
 
-	// NOTE: The there are also a number of additional tasks provided by:
-	// https://github.com/brad-jones/robo-tasks
+    // NOTE: The there are also a number of additional tasks provided by:
+    // https://github.com/brad-jones/robo-tasks
 
-	/*
-	 * Feel free to add your own tasks here.
-	 * For more info on the robo task runner,
-	 * see: http://robo.li/
-	 */
+    /*
+     * Feel free to add your own tasks here.
+     * For more info on the robo task runner,
+     * see: http://robo.li/
+     */
 }
 
 // Initialise the runner

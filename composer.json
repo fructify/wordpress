@@ -1,41 +1,41 @@
 {
-	"name":"fructify/wordpress",
-	"type":"project",
-	"description": "Making WordPress Fruitful and Productive",
-	"homepage": "https://github.com/fructify/wordpress",
-	"keywords": ["fructify", "wordpress", "composer", "laravel"],
-	"license": "MIT",
-	"repositories":
-	[{
-		"type": "composer",
-		"url": "https://wpackagist.org"
-	}],
-	"require":
-	{
-		"gears/asset": "^0.4.0",
-		"codegyre/robo": "^0.7.0",
-		"wp-cli/wp-cli": "^0.22.0",
-		"fructify/robo": "*",
-		"fructify/theme": "*",
-		"brad-jones/robo-tasks": "^0.3.0",
-		"beelab/bowerphp": "dev-master"
-	},
-	"scripts":
-	{
-		"post-install-cmd":
-		[
-			"chmod +x ./robo",
-			"./robo fructify:install ^4.0",
-			"./robo fructify:permissions",
-			"./robo fructify:salts",
-			"./vendor/bin/bowerphp install"
-		],
-		"post-update-cmd":
-		[
-			"./robo fructify:update ^4.0",
-			"./vendor/bin/bowerphp update"
-		]
-	},
-	"minimum-stability": "RC",
-	"prefer-stable": true
+    "name":"fructify/wordpress",
+    "type":"project",
+    "description": "Making WordPress Fruitful and Productive",
+    "homepage": "https://github.com/fructify/wordpress",
+    "keywords": ["fructify", "wordpress", "composer", "laravel"],
+    "license": "MIT",
+    "repositories":
+    [{
+        "type": "composer",
+        "url": "https://wpackagist.org"
+    }],
+    "require":
+    {
+        "gears/asset": "^0.4.0",
+        "codegyre/robo": "^0.7.0",
+        "wp-cli/wp-cli": "^0.22.0",
+        "fructify/robo": "*",
+        "fructify/theme": "*",
+        "brad-jones/robo-tasks": "^0.3.0",
+        "beelab/bowerphp": "dev-master"
+    },
+    "scripts":
+    {
+        "post-install-cmd":
+        [
+            "chmod +x ./robo",
+            "./robo fructify:install ^4.0",
+            "./robo fructify:permissions",
+            "./robo fructify:salts",
+            "./vendor/bin/bowerphp install"
+        ],
+        "post-update-cmd":
+        [
+            "./robo fructify:update ^4.0",
+            "./vendor/bin/bowerphp update"
+        ]
+    },
+    "minimum-stability": "RC",
+    "prefer-stable": true
 }
