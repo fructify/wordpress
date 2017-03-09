@@ -17,7 +17,6 @@
         "wp-cli/wp-cli": "^1.1.0",
         "fructify/robo": "*",
         "fructify/theme": "*",
-        "brad-jones/robo-tasks": "^0.3.0",
         "beelab/bowerphp": "^0.5.1"
     },
     "scripts":
