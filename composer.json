@@ -36,6 +36,6 @@
             "./vendor/bin/bowerphp update"
         ]
     },
-    "minimum-stability": "RC",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
