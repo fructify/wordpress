@@ -28,12 +28,15 @@
     },
     "scripts":
     {
-        "post-install-cmd":
+        "post-create-project-cmd":
         [
             "chmod +x ./robo",
-            "./robo fructify:install ^4.0",
-            "./robo fructify:permissions",
             "./robo fructify:salts",
+            "./robo fructify:permissions"
+        ],
+        "post-install-cmd":
+        [
+            "./robo fructify:install ^4.0",
             "./vendor/bin/bowerphp install"
         ],
         "post-update-cmd":
