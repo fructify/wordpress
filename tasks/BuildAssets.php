@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php declare(strict_types=1);
 ////////////////////////////////////////////////////////////////////////////////
 //             ___________                     __   __  _____
@@ -14,20 +13,17 @@
 // -----------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////////
 
-$composer = require(__DIR__.'/vendor/autoload.php');
+namespace Tasks;
 
-exit
-(
-    Robo\Robo::run
-    (
-        $_SERVER['argv'],
-        array_merge
-        (
-            (new Gears\ClassFinder($composer))
-            ->namespace('Tasks')
-            ->extends(Robo\Tasks::class)
-            ->search(),
-            [Fructify\Robo\Tasks::class]
-        )
-    )
-);
+class BuildAssets extends \Robo\Tasks
+{
+    public function assetCss()
+    {
+        $this->say('TODO');
+    }
+
+    public function assetJs()
+    {
+        $this->say('TODO');
+    }
+}

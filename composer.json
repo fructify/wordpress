@@ -13,10 +13,18 @@
     "require":
     {
         "consolidation/robo": "^1.0.0",
+        "gears/class-finder": "^1.0.1",
         "wp-cli/wp-cli": "^1.1.0",
-        "fructify/robo": "*",
-        "fructify/theme": "*",
+        "fructify/robo": "dev-master",
+        "fructify/theme": "dev-master",
         "beelab/bowerphp": "^0.5.1"
+    },
+    "autoload":
+    {
+        "psr-4":
+        {
+            "Tasks\\": "tasks/"
+        }
     },
     "scripts":
     {
