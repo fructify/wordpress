@@ -36,8 +36,7 @@
         [
             "chmod +x ./robo",
             "./robo fructify:salts",
-            "./robo fructify:permissions",
-            "ln -s ./vendor/bin/bowerphp ./bower"
+            "./robo fructify:permissions"
         ],
         "post-install-cmd":
         [
