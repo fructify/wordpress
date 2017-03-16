@@ -14,10 +14,13 @@
     {
         "consolidation/robo": "^1.0.0",
         "gears/class-finder": "^1.0.1",
+        "gears/asset": "^1.2.0",
         "wp-cli/wp-cli": "^1.1.0",
         "fructify/robo": "^1.0.0",
+        "fructify/reload": "^1.0.0",
         "fructify/theme": "dev-master",
-        "beelab/bowerphp": "^0.5.1"
+        "beelab/bowerphp": "^0.5.1",
+        "henrikbjorn/lurker": "^1.2.0"
     },
     "autoload":
     {
@@ -32,7 +35,8 @@
         [
             "chmod +x ./robo",
             "./robo fructify:salts",
-            "./robo fructify:permissions"
+            "./robo fructify:permissions",
+            "ln -s ./vendor/bin/bowerphp ./bower"
         ],
         "post-install-cmd":
         [
@@ -42,7 +46,7 @@
         "post-update-cmd":
         [
             "./robo fructify:update ^4.0",
-            "./vendor/bin/bowerphp update"
+            "./vendor/bin/bowerphp update || ./vendor/bin/bowerphp install"
         ]
     },
     "minimum-stability": "dev",

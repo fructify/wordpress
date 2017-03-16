@@ -1,0 +1,7 @@
+{
+    "period": 1,
+    "watch": {
+        "wp-content/themes/child/assets/dist/": "*.css",
+        "wp-content/themes/child/assets/dist/": "*.js"
+    }
+}
