@@ -24,11 +24,35 @@ class BuildAssets extends \Robo\Tasks
 {
     use \Gears\Asset\loadTasks;
 
+    /**
+     * Deletes all files inside the `assets/dist` folder.
+     */
     public function assetClean()
     {
         $this->taskCleanDir(['./wp-content/themes/child/assets/dist'])->run();
     }
 
+    /**
+     * Builds the both js & css assets for the child theme.
+     *
+     * @param array $opts
+     *
+     * @option $debug If this flag is set then minifcation will be skipped.
+     */
+    public function assetBuild(array $opts = ['debug' => false])
+    {
+        $this->assetClean();
+        $this->assetCss($opts);
+        $this->assetJs($opts);
+    }
+
+    /**
+     * Builds the primary css asset for the child theme.
+     *
+     * @param array $opts
+     *
+     * @option $debug If this flag is set then minifcation will be skipped.
+     */
     public function assetCss(array $opts = ['debug' => false])
     {
         $this->taskBuildAsset('./wp-content/themes/child/assets/dist/styles.css')
@@ -40,6 +64,13 @@ class BuildAssets extends \Robo\Tasks
         ->run();
     }
 
+    /**
+     * Builds the primary javascript asset for the child theme.
+     *
+     * @param array $opts
+     *
+     * @option $debug If this flag is set then minifcation will be skipped.
+     */
     public function assetJs(array $opts = ['debug' => false])
     {
         $this->taskBuildAsset('./wp-content/themes/child/assets/dist/script.js')
@@ -55,20 +86,25 @@ class BuildAssets extends \Robo\Tasks
         ->run();
     }
 
+    /**
+     * Watches the source asset files for changes and rebuilds automatically.
+     */
     public function assetWatch()
     {
         // We don't need to minify our assets when in development.
         $opts = ['debug' => true];
 
         // Ensure we start with a fresh build.
-        $this->assetClean();
-        $this->assetCss($opts);
-        $this->assetJs($opts);
+        $this->assetBuild($opts);
 
         // Start the live reload web socket server.
         // NOTE: This does not actually serve any PHP files.
         // You will still need Apache or Nginx to actully serve this project.
-        $this->taskExec('./vendor/bin/reload server:run')->background()->run();
+        $this->taskExec('./vendor/bin/reload')
+            ->arg('server:run')
+            ->option('no-watch')
+            ->background()
+        ->run();
 
         /*
          * Additionally there is a piece of Middleware in the base fructify
@@ -76,14 +112,42 @@ class BuildAssets extends \Robo\Tasks
          *
          * <script src="http://localhost:35729/livereload.js"></script>
          *
-         * When wordpress it's self thinks it is running on a local development
-         * environment. This completes the live reload functionality.
+         * But only when wordpress it's self thinks it is running on a local
+         * development environment as per wp-config.php.
          */
+
+        $monitor = function(string $assetType) use($opts)
+        {
+            return function() use($assetType, $opts)
+            {
+                $assetType = 'asset'.ucfirst($assetType);
+                $this->{$assetType}($opts);
+                $this->reloadBrowser();
+            };
+        };
 
         // Watch the source folders for changes and rebuild our assets.
         $this->taskWatch()
-            ->monitor('./wp-content/themes/child/assets/src/scss', function() use($opts) { $this->assetCss($opts); })
-            ->monitor('./wp-content/themes/child/assets/src/js', function() use($opts) { $this->assetJs($opts); })
+            ->monitor('./wp-content/themes/child/assets/src/scss', $monitor('css'))
+            ->monitor('./wp-content/themes/child/assets/src/js', $monitor('js'))
         ->run();
+    }
+
+    /**
+     * Reloads any browsers connected to our live reload server.
+     *
+     * This used instead of having 2 sets of file watchers running.
+     * We also don't care what was updated, css or js, we want the browser
+     * to reload so it picks up on the renamed assets.
+     *
+     * @return void
+     */
+    protected function reloadBrowser()
+    {
+        (new \GuzzleHttp\Client)->get
+        (
+            'http://localhost:35729/changed',
+            ['query' => ['files' => '*']]
+        );
     }
 }

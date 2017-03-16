@@ -20,7 +20,8 @@
         "fructify/reload": "^1.0.0",
         "fructify/theme": "dev-master",
         "beelab/bowerphp": "^0.5.1",
-        "henrikbjorn/lurker": "^1.2.0"
+        "henrikbjorn/lurker": "^1.2.0",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "autoload":
     {
