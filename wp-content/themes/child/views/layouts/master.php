@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?= $this->e(bloginfo('name')) ?> - <?= $this->v('title', function(){ return bloginfo('description'); }) ?></title>
-        <link rel="stylesheet" href="<?= get_stylesheet_directory_uri() ?>/assets/dist/styles.css">
+        <link rel="stylesheet" href="<?= get_stylesheet_directory_uri() ?>/assets/dist/styles.c0f1f8b2822e41e38268df856850ff8d.css">
         <?php wp_head(); ?>
     </head>
     <body>
@@ -20,7 +20,7 @@
             </footer>
 
         </div>
-        <script src="<?= get_stylesheet_directory_uri() ?>/assets/dist/script.js"></script>
+        <script src="<?= get_stylesheet_directory_uri() ?>/assets/dist/script.209799dd7657fac8d8efaf16f62ebfa7.js"></script>
         <?php wp_footer(); ?>
     </body>
 </html>
