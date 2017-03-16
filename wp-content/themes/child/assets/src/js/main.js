@@ -1,1 +1,1 @@
-alert('boo');
+console.log('Fructify is Awesome!');
