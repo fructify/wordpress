@@ -68,6 +68,11 @@ return function(Foo $foo)
 > If your not sure why please start reading about Dependency Injection
 > and Inversion of Control.
 
+## Hierarchical File System
+Most of fructify implements a Hierarchical File System.
+This means hook files in the child theme with the same name as a hook file
+in the parent fructify theme will override that hook file.
+
 ## More Examples
 If you want to see more examples of hook files,
 look in the parent fructify theme hooks folder.
