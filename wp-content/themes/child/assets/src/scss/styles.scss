@@ -1,2 +1,5 @@
+// Correct the font url in bootstrap
 $icon-font-path: "/vendor/bower/bootstrap-sass/assets/fonts/bootstrap/";
+
+// Import paths are either relative to this file or the project root.
 @import "./vendor/bower/bootstrap-sass/assets/stylesheets/_bootstrap.scss";

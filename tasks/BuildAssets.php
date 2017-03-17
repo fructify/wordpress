@@ -57,9 +57,9 @@ class BuildAssets extends \Robo\Tasks
     {
         $this->taskBuildAsset('./wp-content/themes/child/assets/dist/styles.css')
             ->source('./wp-content/themes/child/assets/src/scss/styles.scss')
-            ->template('./wp-content/themes/child/views/layouts/master.php')
             ->debug($opts['debug'])
             ->autoprefix(true)
+            ->cachebust(true)
             ->gz(true)
         ->run();
     }
@@ -80,8 +80,8 @@ class BuildAssets extends \Robo\Tasks
                 './vendor/bower/bootstrap-sass/assets/javascripts/bootstrap.js',
                 './wp-content/themes/child/assets/src/js'
             ])
-            ->template('./wp-content/themes/child/views/layouts/master.php')
             ->debug($opts['debug'])
+            ->cachebust(true)
             ->gz(true)
         ->run();
     }
@@ -136,7 +136,7 @@ class BuildAssets extends \Robo\Tasks
     /**
      * Reloads any browsers connected to our live reload server.
      *
-     * This used instead of having 2 sets of file watchers running.
+     * This is used instead of having 2 sets of file watchers running.
      * We also don't care what was updated, css or js, we want the browser
      * to reload so it picks up on the renamed assets.
      *

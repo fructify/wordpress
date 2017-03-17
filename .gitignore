@@ -33,6 +33,10 @@
 #   !/wp-content/themes/theme-folder
 !/wp-content/themes/child
 
+# Ignore built assets. Minified source files don't play nicely with git.
+# Yes this adds another step to deployments but they should be scripted anyway.
+/wp-content/themes/child/assets/dist
+
 # Ignore files with sensitive info
 .env.php
 .salts.php
