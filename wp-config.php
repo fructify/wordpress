@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 ////////////////////////////////////////////////////////////////////////////////
-//             ___________                     __   __  _____                   
-//             \_   _____/______ __ __   _____/  |_|__|/ ____\__ __             
-//              |    __) \_  __ \  |  \_/ ___\   __\  \   __<   |  |            
-//              |     \   |  | \/  |  /\  \___|  | |  ||  |  \___  |            
-//              \___  /   |__|  |____/  \___  >__| |__||__|  / ____|            
-//                  \/                      \/               \/                 
+//             ___________                     __   __  _____
+//             \_   _____/______ __ __   _____/  |_|__|/ ____\__ __
+//              |    __) \_  __ \  |  \_/ ___\   __\  \   __<   |  |
+//              |     \   |  | \/  |  /\  \___|  | |  ||  |  \___  |
+//              \___  /   |__|  |____/  \___  >__| |__||__|  / ____|
+//                  \/                      \/               \/
 // -----------------------------------------------------------------------------
-//                          https://github.com/fructify                         
-//                                                                              
-//          Designed and Developed by Brad Jones <brad @="bjc.id.au" />         
+//                          https://github.com/fructify
+//
+//          Designed and Developed by Brad Jones <brad @="bjc.id.au" />
 // -----------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +27,7 @@ if (!defined('ABSPATH')) define('ABSPATH', dirname(__FILE__).'/');
  * Section: Include the Composer Autoloader
  * =============================================================================
  * Now this is the whole point of this project, to get composer loaded into
- * the wordpress environment. We assume the vendors dir will be located in the 
+ * the wordpress environment. We assume the vendors dir will be located in the
  * root of the project.
  */
 
@@ -41,7 +41,7 @@ require(ABSPATH.'vendor/autoload.php');
  * real environment variables. Inspired by https://github.com/vlucas/phpdotenv
  * But simplified heaps, because we are using actual PHP arrays and not trying
  * to parse a text file the performance hit should be negligible.
- * 
+ *
  * **IT GOES WITHOUT SAYING - BUT I'LL SAY IT ANYWAY - DO NOT COMMIT .env.php**
  */
 
@@ -144,25 +144,26 @@ define('DB_COLLATE', 'utf8_unicode_ci');
  * a unique prefix. Only numbers, letters, and underscores please!
  */
 
-$table_prefix  = 'wp_';
+define('DB_PREFIX', 'wp_');
+$table_prefix = DB_PREFIX;
 
 /**
  * Section: Authentication Unique Keys and Salts.
  * =============================================================================
  * Salts should never be committed to git, and because we commit this file
  * we need to refrence a non tracked file that contains the salts.
- * 
+ *
  * The file '.salts.php' should get automatically created for
  * you when you create a new project using:
- * 
+ *
  *     composer create-project brads/wordpress my-site
- * 
+ *
  * If not you can run the command:
- * 
+ *
  *     ./vendor/bin/robo wp:salts
- * 
+ *
  * Or alternatively do it yourself by going to:
- * 
+ *
  *     https://api.wordpress.org/secret-key/1.1/salt/
  */
 
